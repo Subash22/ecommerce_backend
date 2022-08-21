@@ -1,0 +1,132 @@
+{% extends "main/includes/base.html" %}
+{% load static %}
+
+<!-- SEO Meta Tags Head-->
+{% block head %}
+<title>Register</title>
+{% endblock head %}
+
+{% block content %}
+
+      <!-- Page Title-->
+      <div class="page-title">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <ul class="breadcrumbs">
+                     <li><a href="/">Home</a> </li>
+                     <li class="separator"></li>
+                     <li>Register</li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Page Content-->
+      <div class="container padding-bottom-3x mb-1">
+         <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+               <div class="card register-area">
+                  <div class="card-body ">
+                     <div class="padding-top-3x hidden-md-up"></div>
+                     <h3 class="margin-bottom-1x text-center">Create an account</h3>
+                     <!-- message -->
+                     {% if messages %}
+                     <div class="mt-3">
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                           {{ message }}
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                           </button>
+                        </div>
+                        {% endfor %}
+                     </div>
+                     {% endif %}
+                     <!-- end message -->
+                     
+                     <form class="row" action="" method="POST">
+                        {% csrf_token %}         
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                              <label for="reg-fn">First Name</label>
+                              <input class="form-control" type="text" name="first_name" placeholder="First Name" id="reg-fn" value="" required>
+                              {% if r_form.fname.errors%}               
+                                 <span class="text-danger">{{r_form.fname.errors}}</span>           
+                              {% endif %}
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                              <label for="reg-ln">Last Name</label>
+                              <input class="form-control" type="text" name="last_name" placeholder="Last Name" id="reg-ln" value="" required>
+                              {% if r_form.lname.errors%}               
+                                 <span class="text-danger">{{r_form.lname.errors}}</span>           
+                              {% endif %}
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                              <label for="reg-email">E-mail Address</label>
+                              <input class="form-control" type="email" name="email" placeholder="E-mail Address" id="reg-email" value="" required>
+                              {% if r_form.email.errors%}               
+                                 <span class="text-danger">{{r_form.email.errors}}</span>           
+                              {% endif %}
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                              <label for="reg-username">Username</label>
+                              <input class="form-control" type="text" name="username" placeholder="Username" id="reg-username" value="" required>
+                              {% if r_form.username.errors%}               
+                                 <span class="text-danger">{{r_form.username.errors}}</span>           
+                              {% endif %}
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                              <label for="reg-pass">Password</label>
+                              <input class="form-control" type="password" name="password1" placeholder="Password" id="reg-pass" required>
+                              {% if r_form.password1.errors%}               
+                                 <span class="text-danger">{{r_form.password1.errors}}</span>           
+                              {% endif %}
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                              <label for="reg-pass-confirm">Confirm Password</label>
+                              <input class="form-control" type="password" name="password2" placeholder="Confirm Password" id="reg-pass-confirm" required>
+                              {% if r_form.password2.errors%}               
+                                 <span class="text-danger">{{r_form.password2.errors}}</span>           
+                              {% endif %}
+                           </div>
+                        </div>
+                        <div class="col-12 text-center">
+                           <button class="btn btn-primary margin-bottom-none  btn-sm" type="submit">Register</button>
+                        </div>
+
+                        
+                        <!-- create acc  -->
+                        <div class="mt-3 mb-4 mx-auto d-flex justify-content-center">
+                           Already have an account? <a href="{% url 'user-login'%}" class="text-gray-600 uppercase text-sm"> Login</a>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Site Footer-->
+      <!--    announcement banner section start   -->
+      <!-- <a class="announcement-banner absulute" href="../assets/images/1632348981vintage-lifestyle-minimalist-femininity-e-shopping-concept.jpg"></a> -->
+      <!--    announcement banner section end   -->
+
+    
+{% endblock content %}
+
+{% block extra_scripts %}
+<script>
+   document.getElementsByClassName('category-list')[0].classList.remove("active");
+</script>
+{% endblock extra_scripts %}

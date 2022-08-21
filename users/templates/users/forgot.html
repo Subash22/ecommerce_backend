@@ -1,0 +1,68 @@
+{% extends "main/includes/base.html" %}
+{% load static %}
+
+<!-- SEO Meta Tags Head-->
+{% block head %}
+<title>Forgot Password</title>
+{% endblock head %}
+
+{% block content %}
+
+      <!-- Page Title-->
+      <div class="page-title">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-12">
+                  <ul class="breadcrumbs">
+                     <li><a href="/">Home</a></li>
+                     <li class="separator"></li>
+                     <li>Password Reset</li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Page Content-->
+      <div class="container padding-bottom-3x mb-1">
+         <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+               <form class="card mt-4" method="POST" action="">
+                  {% csrf_token %}             
+                  <div class="card-body">
+                     <div class="form-group">
+                        <h4 class="d-block text-center mb-4">Reset your password</h4>
+
+                           <!-- message -->
+                           {% if messages %}
+                           <div class="mt-3">
+                              {% for message in messages %}
+                              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                 {{ message }}
+                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              {% endfor %}
+                           </div>
+                           {% endif %}
+                           <!-- end message -->
+                        <label for="email-for-pass">Enter your email address</label>
+                        <input class="form-control" type="text" name="email" id="email-for-pass" placeholder="Enter your email address">
+                        <small class="text-muted">Type in the email address you used when you registered with our website</small>
+                     </div>
+                     <button class="btn btn-primary btn-sm" type="submit">Get Reset Link</button>
+                     <a href="{% url 'user-login' %}" class="btn btn-primary btn-sm" >Login</a>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      
+            
+{% endblock content %}
+
+{% block extra_scripts %}
+<script>
+   document.getElementsByClassName('category-list')[0].classList.remove("active");
+</script>
+{% endblock extra_scripts %}

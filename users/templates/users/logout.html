@@ -1,0 +1,15 @@
+{% extends "main/includes/base.html" %}
+
+<!-- SEO Meta Tags Head-->
+{% block head %}
+<title>Logout</title>
+{% endblock head %}
+
+{% block content %}   
+    <div class="text-grey-dark mt-6">
+        You have been logged out.
+        <a class="no-underline border-b border-blue text-blue" href="{% url 'user-login'%}">
+            Log In Again
+        </a>
+    </div>    
+{% endblock content %}
